@@ -33,6 +33,7 @@ a{color:#8E0E2F}a:hover{color:#5E0A1F}
 <p style="margin: 28px 0 0; max-width: 700px; font-size: 20px; color: #3D424A">I've spent 11+ years building and maintaining production SaaS for teams in Australia, the US and the Philippines: hosting platforms, aged-care software and e-commerce tools.</p>
 <div style="margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px">
 <a href="mailto:frockygarcia@gmail.com" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; background: #B3123B; color: #FFFFFF; text-decoration: none; font-weight: 600">Email me</a>
+<button type="button" data-copy-email="frockygarcia@gmail.com" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; border: 1.5px solid #14161A; background: transparent; color: #14161A; font: inherit; font-weight: 600; cursor: pointer">Copy email</button>
 <a href="#work" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; border: 1.5px solid #14161A; color: #14161A; text-decoration: none; font-weight: 600">See the work</a>
 </div>
 </section>
@@ -234,7 +235,8 @@ a{color:#8E0E2F}a:hover{color:#5E0A1F}
 <h2 id="contact-h" style="margin: 0; max-width: 760px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.08">Let's talk about your Rails app.</h2>
 <p style="margin: 20px 0 32px; max-width: 620px; font-size: 19px; color: #C9CBC6">Based in Tagoloan, Misamis Oriental, Philippines (UTC+8). Comfortable overlapping with Australian and US working hours.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 12px">
-<a href="mailto:frockygarcia@gmail.com" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; background: #FBFBF9; color: #14161A; text-decoration: none; font-weight: 600">frockygarcia@gmail.com</a></div>
+<a href="mailto:frockygarcia@gmail.com" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; background: #FBFBF9; color: #14161A; text-decoration: none; font-weight: 600">frockygarcia@gmail.com</a>
+<button type="button" data-copy-email="frockygarcia@gmail.com" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; border: 1.5px solid #FBFBF9; background: transparent; color: #FBFBF9; font: inherit; font-weight: 600; cursor: pointer">Copy email</button></div>
 </div>
 </section>
 
@@ -244,5 +246,20 @@ a{color:#8E0E2F}a:hover{color:#5E0A1F}
 </footer>
 
 </div>
+<script>
+document.querySelectorAll('[data-copy-email]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var email = b.getAttribute('data-copy-email'), label = b.textContent;
+    function done() { b.textContent = 'Copied!'; setTimeout(function () { b.textContent = label; }, 1800); }
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(email).then(done, fallback);
+    } else { fallback(); }
+    function fallback() {
+      var t = document.createElement('textarea'); t.value = email; document.body.appendChild(t);
+      t.select(); document.execCommand('copy'); t.remove(); done();
+    }
+  });
+});
+</script>
 </body>
 </html>
